@@ -8,13 +8,16 @@ public class main {
         for(Map.Entry<Path, ParseResult<CompilationUnit>> 
             cu:content.entrySet()){
             final Path path=root.resolve(cu.getKey()); 
-            final String code=new PrettyPrinter()
-                .print(cu.getValue().getResult().get()); 
-            try(PrintWriter out=
-                new PrintWriter(path.toFile(), UTF8.toString())){
-                out.println(code); 
-            }
+            save(cu.getValue().getResult().get(), path);
         } 
     }
-}
 
+    private void save(CompilationUnit cu, Path path){
+        final String code=new PrettyPrinter().print(cu);
+        try(PrintWriter out=
+            new PrintWriter(path.toFile(), UTF8.toString())){
+            out.println(code);
+        }
+    }
+
+}
