@@ -11,7 +11,7 @@ public class main {
             final String code=new PrettyPrinter()
                 .print(cu.getValue().getResult().get()); 
             try(PrintWriter out=
-                new PrintWriter(path.toFile(), UTF8.toString())){
+                new PrintWriter(path.toFile(), StandardCharsets.UTF_8)){
                 out.println(code); 
             }
         } 
